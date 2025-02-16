@@ -1,0 +1,27 @@
+post:
+  operationId: AuthLoginPost
+  summary: Performs user login
+  tags:
+    - auth
+  security: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            Email:
+              type: string
+              example: example@example.com
+            Password:
+              type: string
+              example: qwerty123
+          required:
+            - Email
+            - Password
+  responses:
+    200:
+      description: Successful operation
+    default:
+      $ref: ../../shared/error/schema.yaml

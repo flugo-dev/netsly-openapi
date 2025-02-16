@@ -1,0 +1,18 @@
+get:
+  operationId: AssetGet
+  summary: Returns assets that are available for the user to select.
+  tags:
+    - asset
+  parameters:
+    $ref: ../../shared/pagination/parameters.yaml
+  security:
+    - bearerAuth: []
+  responses:
+    200:
+      description: Assets
+      content:
+        application/json:
+          schema:
+            $ref: schema_assets.yaml
+    default:
+      $ref: ../../shared/error/schema.yaml

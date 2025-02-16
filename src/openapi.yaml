@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  version: 0.1.0
+  title: Netsly OpenAPI
+  description: OpenAPI contract desctiption for the Netsly application.
+servers:
+  - url: http://localhost:3000
+    description: Local development server. To use you need to run the docker image of the backend on your local machine.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+tags:
+  - name: auth
+    description: Authentication Management
+paths:
+  /auth/register:
+    $ref: features/auth/path_register.yaml
+  /auth/login:
+    $ref: features/auth/path_login.yaml
+  /assets:
+    $ref: features/asset/path.yaml
+  /user-profile:
+    $ref: features/userProfile/path.yaml

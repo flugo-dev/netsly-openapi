@@ -1,0 +1,193 @@
+openapi: 3.0.3
+info:
+  version: 0.1.0
+  title: Netsly OpenAPI
+  description: OpenAPI contract desctiption for the Netsly application.
+servers:
+  - url: http://localhost:3000
+    description: Local development server. To use you need to run the docker image of the backend on your local machine.
+tags:
+  - name: auth
+    description: Authentication Management
+paths:
+  /auth/register:
+    post:
+      operationId: AuthRegisterPost
+      summary: Performs user registration
+      tags:
+        - auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Email:
+                  type: string
+                  example: example@example.com
+                Password:
+                  type: string
+                  example: qwerty123
+              required:
+                - Email
+                - Password
+      responses:
+        '201':
+          description: Successful operation
+        default:
+          $ref: '#/components/responses/schema'
+  /auth/login:
+    post:
+      operationId: AuthLoginPost
+      summary: Performs user login
+      tags:
+        - auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Email:
+                  type: string
+                  example: example@example.com
+                Password:
+                  type: string
+                  example: qwerty123
+              required:
+                - Email
+                - Password
+      responses:
+        '200':
+          description: Successful operation
+        default:
+          $ref: '#/components/responses/schema'
+  /assets:
+    get:
+      operationId: AssetGet
+      summary: Returns assets that are available for the user to select.
+      tags:
+        - asset
+      parameters:
+        - name: limit
+          in: query
+          description: Number of items returned. If not specified, all instances are returned.
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: Number of items to skip. If not specified, none items are skipped.
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Assets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schema_assets'
+        default:
+          $ref: '#/components/responses/schema'
+  /user-profile:
+    get:
+      operationId: UserProfileGet
+      summary: Returns user's assets and his total net worth
+      tags:
+        - user-profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User Profile Info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schema_user_profile'
+        default:
+          $ref: '#/components/responses/schema'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    schema:
+      description: Error
+      content:
+        application/json:
+          schema:
+            type: object
+            title: ErrorMessage
+            properties:
+              ErrorMessages:
+                type: array
+                items:
+                  type: string
+            required:
+              - ErrorMessages
+  schemas:
+    schema_asset:
+      title: Asset Profile
+      type: object
+      properties:
+        ID:
+          type: string
+          example: 48690945-c3f9-45b4-9045-c6bcfb898f20
+        Name:
+          type: string
+          example: BTC
+        AssetType:
+          type: string
+          enum:
+            - physical
+            - digital
+        IconLink:
+          type: string
+          example: https://example.com/icon.svg
+        Description:
+          type: string
+          example: Bitcoin cryptocurrency
+        Price:
+          type: number
+          format: integer
+          example: 40000
+        CreatedAt:
+          type: string
+          format: date-time
+          example: '2021-08-01T00:00:00Z'
+      required:
+        - ID
+        - Name
+        - AssetType
+        - IconLink
+        - Description
+        - Price
+        - CreatedAt
+    schema_assets:
+      title: Asset Array
+      type: array
+      items:
+        $ref: '#/components/schemas/schema_asset'
+    schema_user_profile:
+      title: User Profile
+      type: object
+      properties:
+        ID:
+          type: string
+          example: 48690945-c3f9-45b4-9045-c6bcfb898f20
+        Assets:
+          $ref: '#/components/schemas/schema_assets'
+        TotalNetWorth:
+          type: number
+          example: 100000
+      required:
+        - ID
+        - Assets
+        - TotalNetWorth

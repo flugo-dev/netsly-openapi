@@ -1,0 +1,13 @@
+description: Error
+content:
+  application/json:
+    schema:
+      type: object
+      title: ErrorMessage
+      properties:
+        ErrorMessages:
+          type: array
+          items:
+            type: string
+      required:
+        - ErrorMessages

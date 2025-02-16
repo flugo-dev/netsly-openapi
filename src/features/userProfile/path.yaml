@@ -1,0 +1,16 @@
+get:
+  operationId: UserProfileGet
+  summary: Returns user's assets and his total net worth
+  tags:
+    - user-profile
+  security:
+    - bearerAuth: []
+  responses:
+    200:
+      description: User Profile Info
+      content:
+        application/json:
+          schema:
+            $ref: ./schema_user_profile.yaml
+    default:
+      $ref: ../../shared/error/schema.yaml

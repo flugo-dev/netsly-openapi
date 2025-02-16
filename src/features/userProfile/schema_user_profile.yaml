@@ -1,0 +1,15 @@
+title: User Profile
+type: object
+properties:
+  ID:
+    type: string
+    example: 48690945-c3f9-45b4-9045-c6bcfb898f20
+  Assets:
+    $ref: ../asset/schema_assets.yaml
+  TotalNetWorth:
+    type: number
+    example: 100000
+required:
+  - ID
+  - Assets
+  - TotalNetWorth

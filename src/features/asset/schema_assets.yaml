@@ -1,0 +1,4 @@
+title: Asset Array
+type: array
+items:
+  $ref: schema_asset.yaml
