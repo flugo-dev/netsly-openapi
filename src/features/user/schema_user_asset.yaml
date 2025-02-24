@@ -1,0 +1,15 @@
+title: User's Asset
+type: object
+properties:
+  Asset:
+    $ref: ../asset/schema_asset.yaml
+  Quantity:
+    type: integer
+    example: 10
+  TotalPrice:
+    type: number
+    example: 400000
+required:
+  - Asset
+  - Quantity
+  - TotalPrice

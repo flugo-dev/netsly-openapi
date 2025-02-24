@@ -23,4 +23,4 @@ paths:
   /assets:
     $ref: features/asset/path.yaml
   /user-profile:
-    $ref: features/userProfile/path.yaml
+    $ref: features/user/path.yaml

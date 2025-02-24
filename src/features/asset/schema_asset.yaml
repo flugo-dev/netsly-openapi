@@ -1,9 +1,6 @@
 title: Asset Profile
 type: object
 properties:
-  ID:
-    type: string
-    example: 48690945-c3f9-45b4-9045-c6bcfb898f20
   Name:
     type: string
     example: BTC
@@ -22,10 +19,6 @@ properties:
     type: number
     format: integer
     example: 40000
-  CreatedAt:
-    type: string
-    format: date-time
-    example: 2021-08-01T00:00:00Z
 required:
   - ID
   - Name
@@ -33,4 +26,3 @@ required:
   - IconLink
   - Description
   - Price
-  - CreatedAt
