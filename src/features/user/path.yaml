@@ -14,14 +14,16 @@ get:
             title: User Profile
             type: object
             properties:
-              title: Assets
-              type: array
-              items:
-                $ref: schema_user_asset.yaml
+              Assets:
+                title: Assets
+                type: array
+                items:
+                  $ref: schema_user_asset.yaml
               TotalNetWorth:
                 type: number
                 example: 400000
-
             required:
+              - Assests
+              - TotalNetWorth
     default:
       $ref: ../../shared/error/schema.yaml
