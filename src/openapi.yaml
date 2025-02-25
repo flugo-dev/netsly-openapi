@@ -17,9 +17,11 @@ tags:
     description: Authentication Management
 paths:
   /auth/register:
-    $ref: features/auth/path_register.yaml
+    $ref: features/auth/path_auth_register.yaml
   /auth/login:
-    $ref: features/auth/path_login.yaml
+    $ref: features/auth/path_auth_login.yaml
+  /auth/refresh:
+    $ref: features/auth/path_auth_refresh.yaml
   /assets:
     $ref: features/asset/path.yaml
   /user-profile:
